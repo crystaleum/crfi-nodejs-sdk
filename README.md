@@ -1,10 +1,10 @@
-# monero-nodejs
+# nero-nodejs
 
-A Node.js wallet manager for interacting with `monero-wallet-rpc`.
+A Node.js wallet manager for interacting with `electronero-wallet-rpc`.
 
-For more information about Monero, visit: https://getmonero.org
+For more information about Monero, visit: https://electronero.org
 
-If you found this useful, please consider [contributing](https://getmonero.org/get-started/contributing/) to the Monero Project!
+If you found this useful, please consider [contributing](https://github.com/electronero) to the Electronero Project!
 
 ## Install the package
 
@@ -17,7 +17,7 @@ npm install monero-nodejs
 ### Or clone the Github repository
 
 ```
-git clone https://github.com/PsychicCat/monero-nodejs.git
+git clone https://github.com/electronero/nero-nodejs.git
 ```
 
 ## Initializing a wallet
@@ -25,27 +25,27 @@ git clone https://github.com/PsychicCat/monero-nodejs.git
 Require the module:
 
 ```
-var moneroWallet = require('monero-nodejs');
+var neroWallet = require('nero-nodejs');
 ```
 
 Create a new instance of the wallet:
 
 ```
-var Wallet = new moneroWallet();
+var Wallet = new neroWallet();
 ```
 
 This creates a wallet using the following simplewallet default RPC settings:
 
 * `hostname` - '127.0.0.1'
-* `port` - 18082
+* `port` - 12090
 
 To connect to a wallet with different settings, pass in the values:
 
 ```
-var Wallet = new moneroWallet($HOSTNAME, $PORT);
+var Wallet = new neroWallet($HOSTNAME, $PORT);
 ```
 
-**Note: versions of monero-nodejs prior to 3.0 require `hostname` with the 'http://' prefix, 3.0 and greater only require the IP address.**
+**Note: versions of nero-nodejs prior to 3.0 require `hostname` with the 'http://' prefix, 3.0 and greater only require the IP address.**
 
 ## Testing
 
@@ -68,7 +68,7 @@ npm test
 Usage:
 
 ```
-Wallet.create_wallet('monero_wallet', '', 'English');
+Wallet.create_wallet('nero_wallet', '', 'English');
 ```
 
 Creates a new wallet.
@@ -92,7 +92,7 @@ Returns an object with `error` field if unsuccessful.
 Usage:
 
 ```
-Wallet.open_wallet('monero_wallet', '');
+Wallet.open_wallet('nero_wallet', '');
 ```
 
 Opens a wallet.
@@ -355,6 +355,22 @@ Usage:
 
 ```
 Wallet.stopWallet();
+```
+
+### store
+
+Usage:
+
+```
+Wallet.store();
+```
+
+### rescan
+
+Usage:
+
+```
+Wallet.rescan();
 ```
 
 Cleanly shuts down the current simplewallet process.
