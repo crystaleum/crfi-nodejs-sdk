@@ -1,3 +1,11 @@
+// Author: Interchained/Shopglobal https://github.com/shopglobal 
+// Connect with us on telegram https://t.me/electronero
+// Year: 2018
+// Contents: Nodejs Example for educational purposes. Not for production use. 
+// Do not use this exact example for production! 
+// This example is parts of a secure project, published for educational purposes.
+// Security is important! Be safe! 
+
 // establish a connection with neroWallet
 var neroWallet = require('./lib/wallet');
 var Wallet = new neroWallet();
@@ -88,6 +96,9 @@ Wallet.rescan().then((result) => {
 }
 
 function openWalletFunction(){
+  // remember to adjust this parameter in production, this is for example purposes
+  // the below command would generate a passwordless Electronero wallet cache called 'nero_wallet'
+  // REMEMBER TO NOT USE THIS IN PRODUCTION BY ANY MEANS. THIS IS AN EDUCATIONAL EXAMPLE 
 Wallet.open_wallet('nero_wallet', '').then((result) => {
     if (result)
     {   
