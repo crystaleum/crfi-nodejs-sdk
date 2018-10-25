@@ -8,16 +8,16 @@ If you found this useful, please consider [contributing](https://github.com/elec
 
 ## Install the package
 
-### via NPM
-
-```
-npm install monero-nodejs
-```
-
-### Or clone the Github repository
+### Clone the Github repository 
 
 ```
 git clone https://github.com/electronero/nero-nodejs.git
+```
+
+### Via Submodule
+
+```
+git submodule add https://github.com/electronero/nero-nodejs.git 
 ```
 
 ## Initializing a wallet
