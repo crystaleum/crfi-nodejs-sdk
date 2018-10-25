@@ -2,9 +2,12 @@
 
 A Node.js wallet manager for interacting with `electronero-wallet-rpc`.
 
-For more information about Monero, visit: https://electronero.org
-
+Maintained for Electronero with upstream and custom patches. 
+Forked from PsychicCat/monero-nodejs 
+For more information about Monero, visit: https://getmonero.org
+For more information about Electronero, visit: https://electronero.org
 If you found this useful, please consider [contributing](https://github.com/electronero) to the Electronero Project!
+
 
 ## Install the package
 
