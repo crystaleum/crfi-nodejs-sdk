@@ -97,7 +97,7 @@ Wallet.rescan().then((result) => {
 
 function openWalletFunction(){
   // remember to adjust this parameter in production, this is for example purposes
-  // the below command would generate a passwordless Electronero wallet cache called 'nero_wallet'
+  // the below command would open a passwordless Electronero wallet cache string called 'nero_wallet'
   // REMEMBER TO NOT USE THIS IN PRODUCTION BY ANY MEANS. THIS IS AN EDUCATIONAL EXAMPLE 
 Wallet.open_wallet('nero_wallet', '').then((result) => {
     if (result)
@@ -111,6 +111,9 @@ Wallet.open_wallet('nero_wallet', '').then((result) => {
 
 function startFunction(){
     // on initial run, this will create wallet if not exists
+    // remember to adjust this parameter in production, this is for example purposes
+    // the below command would generate a passwordless Electronero wallet cache string called 'nero_wallet'
+    // REMEMBER TO NOT USE THIS IN PRODUCTION BY ANY MEANS. THIS IS AN EDUCATIONAL EXAMPLE 
 Wallet.create_wallet('nero_wallet').then(function(result){
     console.log(result);
 });
