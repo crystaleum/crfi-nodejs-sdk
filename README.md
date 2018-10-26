@@ -359,6 +359,7 @@ Usage:
 ```
 Wallet.stopWallet();
 ```
+Cleanly shuts down the current simplewallet process.
 
 ### store
 
@@ -376,4 +377,3 @@ Usage:
 Wallet.rescan();
 ```
 
-Cleanly shuts down the current simplewallet process.
