@@ -1,26 +1,25 @@
-# nero-nodejs
+# crfi-nodejs-sdk
+A Node.js wallet manager for interacting with `crystaleum-wallet-rpc`. </br>
+</br>
+Forked from PsychicCat/monero-nodejs || For more information about Monero, visit: https://getmonero.org </br>
+Maintained for Electronero with upstream and custom patches || For more information about Electronero, visit: https://t.me/electronero </br>
+</br>
 
-A Node.js wallet manager for interacting with `electronero-wallet-rpc`.
-
-Maintained for Electronero with upstream and custom patches. 
-Forked from PsychicCat/monero-nodejs 
-For more information about Monero, visit: https://getmonero.org
-For more information about Electronero, visit: https://electronero.org
-If you found this useful, please consider [contributing](https://github.com/electronero) to the Electronero Project!
-
+If you found this useful, please consider [contributing](https://github.com/electronero) to Electronero Network Project!
+________________________________
 
 ## Install the package
 
 ### Clone the Github repository 
 
 ```
-git clone https://github.com/electronero/nero-nodejs.git
+git clone https://github.com/crystaleum/crfi-nodejs-sdk.git
 ```
 
 ### Via Submodule
 
 ```
-git submodule add https://github.com/electronero/nero-nodejs.git 
+git submodule add https://github.com/crystaleum/crfi-nodejs-sdk.git 
 ```
 
 ## Initializing a wallet
@@ -28,138 +27,121 @@ git submodule add https://github.com/electronero/nero-nodejs.git
 Require the module:
 
 ```
-var neroWallet = require('nero-nodejs');
+var crfiWallet = require('crfi-nodejs-sdk');
 ```
 
 Create a new instance of the wallet:
 
 ```
-var Wallet = new neroWallet();
+var Wallet = new crfiWallet();
 ```
 
 This creates a wallet using the following simplewallet default RPC settings:
 
 * `hostname` - '127.0.0.1'
-* `port` - 12090
+* `port` - 12345
 
 To connect to a wallet with different settings, pass in the values:
 
 ```
-var Wallet = new neroWallet($HOSTNAME, $PORT);
+var Wallet = new crfiWallet($HOSTNAME, $PORT);
 ```
 
-**Note: versions of nero-nodejs prior to 3.0 require `hostname` with the 'http://' prefix, 3.0 and greater only require the IP address.**
+**Note: versions of crfi-nodejs-sdk prior to 1.0 require `hostname` with the 'http://' prefix, 3.0 and greater only require the IP address.**
 
 ## Testing
 
 Some basic tests can now be run locally to verify the library and your simplewallet instance are communicating. The tests assume simplewallet will be listening at the default config settings. Tests are run via mocha.
 To run the tests, clone the repository and then:
 
-npm install
-npm test
+`npm install
+npm test`
 
 ## Example Usage
-
+```
     Wallet.balance().then(function(balance) {
         console.log(balance);
     });
+```
 
 ## Wallet Methods
 
 ### create_wallet
-
-Usage:
-
-```
-Wallet.create_wallet('nero_wallet', '', 'English');
-```
-
-Creates a new wallet.
-
+</br>
 Parameters:
-
 * `filename` - filename of wallet to create (_string_)
 * `password` - wallet password (_string_)
 * `language` - language to use for mnemonic phrase (_string_)
 
+Function: Creates a new wallet. </br>
+Usage:
+```
+Wallet.create_wallet('crfi_wallet', '', 'English');
+```
+</br>
 Example response:
-
 ```
 {}
 ```
-
+</br>
+Error Response: 
 Returns an object with `error` field if unsuccessful.
+</br>
 
 ### open_walllet
-
+</br>
+Parameters:
+* `filename` - filename of wallet to open (_string_)
+* `password` -wallet password (_string_)
+Function: Opens a wallet. </br>
 Usage:
-
 ```
 Wallet.open_wallet('nero_wallet', '');
 ```
-
-Opens a wallet.
-
-Parameters:
-
-* `filename` - filename of wallet to open (_string_)
-* `password` -wallet password (_string_)
-
+</br>
 Example response:
-
 ```
 {}
 ```
-
-Returns an object with `error` field if unsuccessful.
+</br>
+Error response: Returns an object with `error` field if unsuccessful.
+</br>
 
 ### balance
-
+</br>
+Function: Responds with the current balance and unlocked (spendable) balance of the wallet in atomic units. Divide by 1e12 to convert.</br>
 Usage:
-
 ```
 Wallet.balance();
 ```
-
-Responds with the current balance and unlocked (spendable) balance of the wallet in atomic units. Divide by 1e12 to convert.
-
+</br>
 Example response:
-
 ```
 { balance: 3611980142579999, unlocked_balance: 3611980142579999 }
 ```
+</br>
 
 ### address
-
+</br>
+Function: Responds with the Monero address of the wallet.</br>
 Usage:
-
 ```
 Wallet.address();
 ```
-
-Responds with the Monero address of the wallet.
-
+</br>
 Example response:
-
 ```
 { address: '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A' }
 ```
+</br>
 
 ### transfer
-
-Usage:
-
-```
-Wallet.transfer(destinations, options);
-```
-
-Transfers Monero to a single recipient OR a group of recipients in a single transaction. Responds with the transaction hash of the payment.
-
+</br>
 Parameters:
 
 * `destinations` - an object OR an array of objects in the following format: `{amount: (*number*), address: (*string*)}`
 * `options` - an object with the following properties (_optional_)
-  {
+  ```{
   mixin: (_number_), // amount of existing transaction outputs to mix yours with (default is 4)
   unlockTime: (_number_), // number of blocks before tx is spendable (default is 0)
   pid: (_string_) // optional payment ID (a 64 character hexadecimal string used for identifying the sender of a payment)
@@ -168,212 +150,194 @@ Parameters:
   priority: (_integer_) // optional transaction priority
   get*tx_hex: (\_boolean*) // optional boolean used to indicate that the transaction should be returned as hex string after sending
   get*tx_key: (\_boolean*) // optional boolean used to indicate that the transaction key should be returned after sending
-  }
+  }```
+</br>
+Function: Transfers Monero to a single recipient OR a group of recipients in a single transaction. Responds with the transaction hash of the payment.</br>
+Usage:
+```
+Wallet.transfer(destinations, options);
+```
+</br>
 
 Example response:
 
 ```
 { tx_hash: '<b9272a68b0f242769baa1ac2f723b826a7efdc5ba0c71a2feff4f292967936d8>', tx_key: '' }
 ```
+</br>
 
 ### transferSplit
-
-Usage:
-
-```
-Wallet.transferSplit(destinations, options);
-```
-
-Same as `transfer`, but can split into more than one transaction if necessary. Responds with a list of transaction hashes.
+</br>
+Function: Same as `transfer`, but can split into more than one transaction if necessary. Responds with a list of transaction hashes.</br>
 
 Additional property available for the `options` parameter:
 
 * `new_algorithm` - `true` to use the new transaction construction algorithm. defaults to `false`. (_boolean_)
 
+Usage:
+```
+Wallet.transferSplit(destinations, options);
+```
+</br>
 Example response:
-
 ```
 { tx_hash_list: [ '<f17fb226ebfdf784a0f5814e1c5bb78c19ea26930a0d706c9dc1085a250ceb37>' ] }
 ```
+</br>
 
 ### sweep_dust
-
+</br>
+Function: Sends all dust outputs back to the wallet, to make funds easier to spend and mix. Responds with a list of the corresponding transaction hashes.</br>
 Usage:
-
 ```
 Wallet.sweep_dust();
 ```
-
-Sends all dust outputs back to the wallet, to make funds easier to spend and mix. Responds with a list of the corresponding transaction hashes.
-
+</br>
 Example response:
-
 ```
 { tx_hash_list: [ '<75c666fc96120a643321a5e76c0376b40761582ee40cc4917e8d1379a2c8ad9f>' ] }
 ```
+</br>
 
 ### sweep_all
-
+</br>
+Function: Sends all spendable outputs to the specified address. Responds with a list of the corresponding transaction hashes.</br>
 Usage:
-
 ```
 Wallet.sweep_all('44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A');
 ```
-
-Sends all spendable outputs to the specified address. Responds with a list of the corresponding transaction hashes.
+</br>
 
 Example response:
-
 ```
 { tx_hash_list: [ '<75c666fc96120a643321a5e76c0376b40761582ee40cc4917e8d1379a2c8ad9f>' ] }
 ```
+</br>
 
 ### getPayments
-
+</br>
+Parameters:
+* `paymentID` - the payment ID to scan wallet for included transactions (_string_)
+Function: Returns a list of incoming payments using a given payment ID. </br>
 Usage:
-
 ```
 Wallet.getPayments(paymentID);
 ```
-
-Returns a list of incoming payments using a given payment ID.
-
-Parameters:
-
-* `paymentID` - the payment ID to scan wallet for included transactions (_string_)
+</br>
 
 ### getBulkPayments
+</br>
+Parameters:
+* `paymentIDs` - the payment ID or list of IDs to scan wallet for (_array_)
+* `minHeight` - the minimum block height to begin scanning from (example: 800000) (_number_)
+Function: Returns a list of incoming payments using a single payment ID or a list of payment IDs from a given height.</br>
 
 Usage:
-
 ```
 Wallet.getBulkPayments(paymentIDs, minHeight);
 ```
-
-Returns a list of incoming payments using a single payment ID or a list of payment IDs from a given height.
-
-Parameters:
-
-* `paymentIDs` - the payment ID or list of IDs to scan wallet for (_array_)
-* `minHeight` - the minimum block height to begin scanning from (example: 800000) (_number_)
+</br>
 
 ### incomingTransfers
+</br>
+Parameters:
+* `type` - accepts `"all"`: all the transfers, `"available"`: only transfers that are not yet spent, or `"unavailable"`: only transfers which have been spent (_string_)
+Function: Returns a list of incoming transfers to the wallet.</br>
 
 Usage:
-
 ```
 Wallet.incomingTransfers(type);
 ```
-
-Returns a list of incoming transfers to the wallet.
-
-Parameters:
-
-* `type` - accepts `"all"`: all the transfers, `"available"`: only transfers that are not yet spent, or `"unavailable"`: only transfers which have been spent (_string_)
+</br>
 
 ### queryKey
-
+</br>
+Parameters:
+* `type` - accepts `"mnemonic"`: the mnemonic seed for restoring the wallet, or `"view_key"`: the wallet's view key (_string_)
+Function: Returns the wallet's spend key (mnemonic seed) or view private key.</br>
 Usage:
-
 ```
 Wallet.queryKey(type);
 ```
-
-Returns the wallet's spend key (mnemonic seed) or view private key.
-
-Parameters:
-
-* `type` - accepts `"mnemonic"`: the mnemonic seed for restoring the wallet, or `"view_key"`: the wallet's view key (_string_)
+</br>
 
 ### integratedAddress
+</br>
+Parameters:
 
+* `paymentID` - a 64 character hex string. if not provided, a random payment ID is generated. (_string_, optional)
+Function: Make and return a new integrated address from your wallet address and a payment ID.</br>
 Usage:
-
 ```
 Wallet.integratedAddress(paymentID);
 ```
-
+</br>
 OR:
-
 ```
 Wallet.integratedAddress();
 ```
 
-Make and return a new integrated address from your wallet address and a payment ID.
-
-Parameters:
-
-* `paymentID` - a 64 character hex string. if not provided, a random payment ID is generated. (_string_, optional)
-
+</br>
 Example response:
-
 ```
 { integrated_address: '4HCSju123guax69cVdqVP5APVLkcxxjjXdcP9fJWZdNc5mEpn3fXQY1CFmJDvyUXzj2Fy9XafvUgMbW91ZoqwqmQ96NYBVqEd6JAu9j3gk' }
 ```
+</br>
 
 ### splitIntegrated
-
+</br>
+Parameters:
+* `address` - an integrated Monero address (_string_)
+Function: Returns the standard address and payment ID corresponding to a given integrated address.</br>
 Usage:
-
 ```
 Wallet.splitIntegrated(address);
 ```
-
-Returns the standard address and payment ID corresponding to a given integrated address.
-
-Parameters:
-
-* `address` - an integrated Monero address (_string_)
-
+</br>
 Example response:
-
 ```
 { payment_id: '<61eec5ffd3b9cb57>',
   standard_address: '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A' }
 ```
+</br>
 
 ### height
-
+</br>
+Parameters:
+* `callback` - a callback function that responds with an error or the response data in the following order: (_error, data_)
+Function: Returns the current block height of the daemon.</br>
 Usage:
-
 ```
 Wallet.height();
 ```
-
-Returns the current block height of the daemon.
-
-Parameters:
-
-* `callback` - a callback function that responds with an error or the response data in the following order: (_error, data_)
-
+</br>
 Example response:
-
 ```
 { height: 874458 }
 ```
+</br>
 
 ### stopWallet
-
+</br>
+Function: Cleanly shuts down the current simplewallet process.</br>
 Usage:
-
 ```
 Wallet.stopWallet();
 ```
-Cleanly shuts down the current simplewallet process.
+</br>
 
 ### store
-
+</br>
 Usage:
-
 ```
 Wallet.store();
 ```
+</br>
 
 ### rescan
-
+</br>
 Usage:
-
 ```
 Wallet.rescan();
 ```
-
+</br></br>
