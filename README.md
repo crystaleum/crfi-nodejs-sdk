@@ -141,7 +141,8 @@ Parameters:
 
 * `destinations` - an object OR an array of objects in the following format: `{amount: (*number*), address: (*string*)}`
 * `options` - an object with the following properties (_optional_)
-  `{
+```
+{
   mixin: (_number_), // amount of existing transaction outputs to mix yours with (default is 4)
   unlockTime: (_number_), // number of blocks before tx is spendable (default is 0)
   pid: (_string_) // optional payment ID (a 64 character hexadecimal string used for identifying the sender of a payment)
@@ -150,7 +151,8 @@ Parameters:
   priority: (_integer_) // optional transaction priority
   get*tx_hex: (\_boolean*) // optional boolean used to indicate that the transaction should be returned as hex string after sending
   get*tx_key: (\_boolean*) // optional boolean used to indicate that the transaction key should be returned after sending
-  }`
+}
+```
 </br>
 Function: Transfers Monero to a single recipient OR a group of recipients in a single transaction. Responds with the transaction hash of the payment.</br>
 Usage:
