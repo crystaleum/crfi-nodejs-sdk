@@ -12,28 +12,24 @@ ________________________________
 
 ### Clone the Github repository 
 
-```
-git clone https://github.com/crystaleum/crfi-nodejs-sdk.git
+``` git clone https://github.com/crystaleum/crfi-nodejs-sdk.git
 ```
 
 ### Via Submodule
 
-```
-git submodule add https://github.com/crystaleum/crfi-nodejs-sdk.git 
+``` git submodule add https://github.com/crystaleum/crfi-nodejs-sdk.git 
 ```
 
 ## Initializing a wallet
 
 Require the module:
 
-```
-var crfiWallet = require('crfi-nodejs-sdk');
+``` var crfiWallet = require('crfi-nodejs-sdk');
 ```
 
 Create a new instance of the wallet:
 
-```
-var Wallet = new crfiWallet();
+``` var Wallet = new crfiWallet();
 ```
 
 This creates a wallet using the following simplewallet default RPC settings:
@@ -43,8 +39,7 @@ This creates a wallet using the following simplewallet default RPC settings:
 
 To connect to a wallet with different settings, pass in the values:
 
-```
-var Wallet = new crfiWallet($HOSTNAME, $PORT);
+``` var Wallet = new crfiWallet($HOSTNAME, $PORT);
 ```
 
 **Note: versions of crfi-nodejs-sdk prior to 1.0 require `hostname` with the 'http://' prefix, 3.0 and greater only require the IP address.**
@@ -58,8 +53,7 @@ To run the tests, clone the repository and then:
 npm test`
 
 ## Example Usage
-```
-    Wallet.balance().then(function(balance) {
+``` Wallet.balance().then(function(balance) {
         console.log(balance);
     });
 ```
@@ -75,14 +69,13 @@ Parameters:
 
 Function: Creates a new wallet. </br>
 Usage:
+``` Wallet.create_wallet('crfi_wallet', '', 'English');
 ```
-Wallet.create_wallet('crfi_wallet', '', 'English');
-```
+
 </br>
 Example response:
-```
-{}
-```
+` {} `
+
 </br>
 Error Response: 
 Returns an object with `error` field if unsuccessful.
@@ -101,8 +94,7 @@ Wallet.open_wallet('nero_wallet', '');
 
 </br>
 Example response:
-``` {}
-```
+` {} `
 
 </br>
 Error response: Returns an object with `error` field if unsuccessful.
