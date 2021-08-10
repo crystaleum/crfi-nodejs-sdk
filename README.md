@@ -71,47 +71,26 @@ npm test
 ### create_wallet
 </br>
 Parameters:
-* `filename` - filename of wallet to create (_string_)
-* `password` - wallet password (_string_)
-* `language` - language to use for mnemonic phrase (_string_)
-
+* `filename` - filename of wallet to create (_string_)</br>
+* `password` - wallet password (_string_)</br>
+* `language` - language to use for mnemonic phrase (_string_)</br>
 Function: Creates a new wallet. </br>
 Usage:
 ``` 
 Wallet.create_wallet('crfi_wallet', '', 'English');
 ```
 
-</br>
-Example response:
-</br>
-``` 
-{} 
-```
-
-</br>
-Error Response: 
-Returns an object with `error` field if unsuccessful.
-</br>
-
 ### open_walllet
 </br>
-Parameters:
-* `filename` - filename of wallet to open (_string_)
-* `password` -wallet password (_string_)
+Parameters:</br>
+* `filename` - filename of wallet to open (_string_) </br>
+* `password` -wallet password (_string_)</br>
 Function: Opens a wallet. </br>
 Usage:
 ```
 Wallet.open_wallet('nero_wallet', '');
 ```
 
-</br>
-Example response:
-``` 
-{} 
-```
-
-</br>
-Error response: Returns an object with `error` field if unsuccessful.
 </br>
 
 ### balance
@@ -123,7 +102,7 @@ Wallet.balance();
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { balance: 3611980142579999, unlocked_balance: 3611980142579999 }
 ```
@@ -133,13 +112,13 @@ Example response:
 ### address
 </br>
 Function: Responds with the Monero address of the wallet.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.address();
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { address: '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A' }
 ```
@@ -148,11 +127,10 @@ Example response:
 
 ### transfer
 </br>
-Parameters:
-
-* `destinations` - an object OR an array of objects in the following format: `{amount: (*number*), address: (*string*)}`
-* `options` - an object with the following properties (_optional_)
-
+Parameters:</br>
+* `destinations` - an object OR an array of objects in the following format: `{amount: (*number*), address: (*string*)}` </br>
+* `options` - an object with the following properties (_optional_) </br>
+</br>
 ```
 {
   mixin: (_number_), // amount of existing transaction outputs to mix yours with (default is 4)
@@ -168,14 +146,14 @@ Parameters:
 
 </br>
 Function: Transfers Monero to a single recipient OR a group of recipients in a single transaction. Responds with the transaction hash of the payment.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.transfer(destinations, options);
 ```
 
 </br>
 
-Example response:
+Example response:</br>
 
 ``` 
 { tx_hash: '<b9272a68b0f242769baa1ac2f723b826a7efdc5ba0c71a2feff4f292967936d8>', tx_key: '' }
@@ -187,17 +165,16 @@ Example response:
 </br>
 Function: Same as `transfer`, but can split into more than one transaction if necessary. Responds with a list of transaction hashes.</br>
 
-Additional property available for the `options` parameter:
+Additional property available for the `options` parameter:</br>
+* `new_algorithm` - `true` to use the new transaction construction algorithm. defaults to `false`. (_boolean_)</br>
 
-* `new_algorithm` - `true` to use the new transaction construction algorithm. defaults to `false`. (_boolean_)
-
-Usage:
+Usage:</br>
 ``` 
 Wallet.transferSplit(destinations, options);
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { tx_hash_list: [ '<f17fb226ebfdf784a0f5814e1c5bb78c19ea26930a0d706c9dc1085a250ceb37>' ] }
 ```
@@ -207,13 +184,13 @@ Example response:
 ### sweep_dust
 </br>
 Function: Sends all dust outputs back to the wallet, to make funds easier to spend and mix. Responds with a list of the corresponding transaction hashes.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.sweep_dust();
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { tx_hash_list: [ '<75c666fc96120a643321a5e76c0376b40761582ee40cc4917e8d1379a2c8ad9f>' ] }
 ```
@@ -223,14 +200,14 @@ Example response:
 ### sweep_all
 </br>
 Function: Sends all spendable outputs to the specified address. Responds with a list of the corresponding transaction hashes.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.sweep_all('44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A');
 ```
 
 </br>
 
-Example response:
+Example response:</br>
 ``` 
 { tx_hash_list: [ '<75c666fc96120a643321a5e76c0376b40761582ee40cc4917e8d1379a2c8ad9f>' ] }
 ```
@@ -239,9 +216,9 @@ Example response:
 
 ### getPayments
 </br>
-Parameters:
-* `paymentID` - the payment ID to scan wallet for included transactions (_string_)
-Function: Returns a list of incoming payments using a given payment ID. </br>
+Parameters:</br>
+* `paymentID` - the payment ID to scan wallet for included transactions (_string_)</br>
+Function: Returns a list of incoming payments using a given payment ID. </br></br>
 Usage:
 ``` 
 Wallet.getPayments(paymentID);
@@ -251,12 +228,11 @@ Wallet.getPayments(paymentID);
 
 ### getBulkPayments
 </br>
-Parameters:
-* `paymentIDs` - the payment ID or list of IDs to scan wallet for (_array_)
-* `minHeight` - the minimum block height to begin scanning from (example: 800000) (_number_)
+Parameters:</br>
+* `paymentIDs` - the payment ID or list of IDs to scan wallet for (_array_)</br>
+* `minHeight` - the minimum block height to begin scanning from (example: 800000) (_number_)</br>
 Function: Returns a list of incoming payments using a single payment ID or a list of payment IDs from a given height.</br>
-
-Usage:
+Usage:</br>
 ``` 
 Wallet.getBulkPayments(paymentIDs, minHeight);
 ```
@@ -265,13 +241,11 @@ Wallet.getBulkPayments(paymentIDs, minHeight);
 
 ### incomingTransfers
 </br>
-Parameters:
-* `type` - accepts `"all"`: all the transfers, `"available"`: only transfers that are not yet spent, or `"unavailable"`: only transfers which have been spent (_string_)
+Parameters:</br>
+* `type` - accepts `"all"`: all the transfers, `"available"`: only transfers that are not yet spent, or `"unavailable"`: only transfers which have been spent (_string_)</br>
 Function: Returns a list of incoming transfers to the wallet.</br>
-
-Usage:
+Usage:</br>
 ``` 
-
 Wallet.incomingTransfers(type);
 ```
 
@@ -279,10 +253,10 @@ Wallet.incomingTransfers(type);
 
 ### queryKey
 </br>
-Parameters:
-* `type` - accepts `"mnemonic"`: the mnemonic seed for restoring the wallet, or `"view_key"`: the wallet's view key (_string_)
-Function: Returns the wallet's spend key (mnemonic seed) or view private key.</br>
-Usage:
+Parameters:</br>
+* `type` - accepts `"mnemonic"`: the mnemonic seed for restoring the wallet, or `"view_key"`: the wallet's view key (_string_)</br>
+Function: Returns the wallet's spend key (mnemonic seed) or view private key.</br></br>
+Usage:</br>
 ``` 
 Wallet.queryKey(type);
 ```
@@ -291,22 +265,21 @@ Wallet.queryKey(type);
 
 ### integratedAddress
 </br>
-Parameters:
-
-* `paymentID` - a 64 character hex string. if not provided, a random payment ID is generated. (_string_, optional)
+Parameters:</br>
+* `paymentID` - a 64 character hex string. if not provided, a random payment ID is generated. (_string_, optional)</br>
 Function: Make and return a new integrated address from your wallet address and a payment ID.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.integratedAddress(paymentID);
 ```
 </br>
-OR:
+OR:</br>
 ``` 
 Wallet.integratedAddress();
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { integrated_address: '4HCSju123guax69cVdqVP5APVLkcxxjjXdcP9fJWZdNc5mEpn3fXQY1CFmJDvyUXzj2Fy9XafvUgMbW91ZoqwqmQ96NYBVqEd6JAu9j3gk' }
 ```
@@ -314,16 +287,16 @@ Example response:
 
 ### splitIntegrated
 </br>
-Parameters:
-* `address` - an integrated Monero address (_string_)
+Parameters:</br>
+* `address` - an integrated Monero address (_string_)</br>
 Function: Returns the standard address and payment ID corresponding to a given integrated address.</br>
-Usage:
+Usage:</br>
 ```
 Wallet.splitIntegrated(address);
 ```
 
 </br>
-Example response:
+Example response:</br>
 ```
 { payment_id: '<61eec5ffd3b9cb57>',
   standard_address: '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A' }
@@ -333,8 +306,8 @@ Example response:
 
 ### height
 </br>
-Parameters:
-* `callback` - a callback function that responds with an error or the response data in the following order: (_error, data_)
+Parameters:</br>
+* `callback` - a callback function that responds with an error or the response data in the following order: (_error, data_)</br>
 Function: Returns the current block height of the daemon.</br>
 Usage:
 ``` 
@@ -342,7 +315,7 @@ Wallet.height();
 ```
 
 </br>
-Example response:
+Example response:</br>
 ``` 
 { height: 874458 }
 ```
@@ -352,7 +325,7 @@ Example response:
 ### stopWallet
 </br>
 Function: Cleanly shuts down the current simplewallet process.</br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.stopWallet();
 ```
@@ -361,7 +334,7 @@ Wallet.stopWallet();
 
 ### store
 </br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.store();
 ```
@@ -370,7 +343,7 @@ Wallet.store();
 
 ### rescan
 </br>
-Usage:
+Usage:</br>
 ``` 
 Wallet.rescan();
 ```
