@@ -75,18 +75,21 @@ Parameters:
 * `password` - wallet password (_string_)</br>
 * `language` - language to use for mnemonic phrase (_string_)</br>
 Function: Creates a new wallet. </br>
-Usage:
+Usage:</br>
+
 ``` 
 Wallet.create_wallet('crfi_wallet', '', 'English');
 ```
 
+</br>
 ### open_walllet
 </br>
 Parameters:</br>
 * `filename` - filename of wallet to open (_string_) </br>
 * `password` -wallet password (_string_)</br>
 Function: Opens a wallet. </br>
-Usage:
+Usage:</br>
+
 ```
 Wallet.open_wallet('nero_wallet', '');
 ```
