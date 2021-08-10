@@ -83,6 +83,7 @@ Wallet.create_wallet('crfi_wallet', '', 'English');
 
 </br>
 Example response:
+</br>
 ``` 
 {} 
 ```
